@@ -1,0 +1,14 @@
+{
+    "name": "atmosmaciel/api-with-silex",
+    "description": "api-with-silex",
+    "minimum-stability": "dev",
+    "require": {
+    	"silex/silex": "^2.0"
+    },
+
+    "autoload": {
+    	"psr-4": {
+    		"Api\\":"src/"
+    	}
+    }
+}
