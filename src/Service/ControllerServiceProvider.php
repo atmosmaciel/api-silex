@@ -4,14 +4,14 @@ namespace Api\Service;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
-use Api\Controller\HomeController;
+use Api\Controller\BeerController;
 
 class ControllerServiceProvider implements ServiceProviderInterface
 {
 	public function register(Container $app)
 	{
-		$app['home'] = function(Container $app){
-			return new HomeController($app);
+		$app['beers'] = function(Container $app){
+			return new BeerController($app);
 		};
 	}
 }
