@@ -3,6 +3,7 @@
 namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation AS JMS;
 
 /**
  * Beers
@@ -73,10 +74,12 @@ class Beer
 
     /**
      * @param int $id
+     * @return Beer
      */
     public function setId($id)
     {
         $this->id = $id;
+        return $this;
     }
 
     /**
@@ -89,10 +92,12 @@ class Beer
 
     /**
      * @param string $name
+     * @return Beer
      */
     public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -105,10 +110,12 @@ class Beer
 
     /**
      * @param float $price
+     * @return Beer
      */
     public function setPrice($price)
     {
         $this->price = $price;
+        return $this;
     }
 
     /**
@@ -121,10 +128,12 @@ class Beer
 
     /**
      * @param string $type
+     * @return Beer
      */
     public function setType($type)
     {
         $this->type = $type;
+        return $this;
     }
 
     /**
@@ -137,10 +146,12 @@ class Beer
 
     /**
      * @param string $mark
+     * @return Beer
      */
     public function setMark($mark)
     {
         $this->mark = $mark;
+        return $this;
     }
 
     /**
@@ -153,10 +164,12 @@ class Beer
 
     /**
      * @param \DateTime $createdAt
+     * @return Beer
      */
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+        return $this;
     }
 
     /**
@@ -169,9 +182,11 @@ class Beer
 
     /**
      * @param \DateTime $updatedAt
+     * @return Beer
      */
     public function setUpdatedAt($updatedAt)
     {
         $this->updatedAt = $updatedAt;
+        return $this;
     }
 }

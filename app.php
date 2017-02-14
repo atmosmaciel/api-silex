@@ -1,5 +1,5 @@
 <?php
-
+//contem configuracoes do silex; e registros que o Silex utiliza;
 require "bootstrap.php";
 
 use Silex\Application;

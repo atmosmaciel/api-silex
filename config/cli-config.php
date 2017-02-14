@@ -1,4 +1,10 @@
 <?php
+/**
+ * Comando para Rodar via terminal
+ * ./bin/doctrine orm:convert-mapping --force --from-database annotation ./src/Model/
+ *
+ */
+
 // cli-config.php
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -8,9 +14,3 @@ $helperSet = new \Symfony\Component\Console\Helper\HelperSet(array(
 ));
 
 return $helperSet;
-
-/**
- * Comando para Rodar via terminal
- * ./bin/doctrine orm:convert-mapping --force --from-database annotation ./src/Model/
- *
- */
