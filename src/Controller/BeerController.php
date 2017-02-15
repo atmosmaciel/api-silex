@@ -8,9 +8,9 @@ use Symfony\Component\HttpFoundation\Request;
 
 class BeerController extends BaseController
 {
-    public function getBeer($id = null)
+    public function get($id = null)
     {
-        $beers = $this->app['orm.em']
+        $beers = $this->getDoctrineService()
                       ->getRepository('Api\Model\Beer');
 
         if (is_null($id)){
@@ -31,9 +31,9 @@ class BeerController extends BaseController
         return $this->returnResponse($build, 200);
     }
 
-    public function createBeer(Request $request)
+    public function create(Request $request)
     {
-        $orm = $this->app['orm.em'];
+        $orm = $this->getDoctrineService();
 
         $data = $request->request->all();
 
@@ -54,5 +54,60 @@ class BeerController extends BaseController
 
         return $this->returnResponse(json_encode(['msg'=>'beer saved sucessfull']),200);
     }
-    
+
+    public function update(Request $request)
+    {
+        $data = $request->request->all();
+
+        if (!isset($data['id'])) {
+            return $this->returnResponse(json_encode(["msg" => "ID não informado"]), 401);
+        }
+
+        $orm = $this->getDoctrineService();
+
+        $beer = $orm->getRepository('Api\Model\Beer')
+                    ->find($data['id']);
+
+        if (isset($data['name'])) {
+            $beer->setName($data['name']);
+        }
+
+        if (isset($data['price'])) {
+            $beer->setPrice($data['price']);
+        }
+
+        if (isset($data['type'])) {
+            $beer->setType($data['type']);
+        }
+
+        if (isset($data['mark'])) {
+            $beer->setType($data['mark']);
+        }
+
+        $beer->setUpdatedAt(new \DateTime("now", new \DateTimeZone("America/Sao_Paulo")));
+
+        $orm->merge($beer);
+        $orm->flush();
+
+        return $this->returnResponse(json_encode(["msg"=>"beer sucessfull updatad at"]),200);
+    }
+
+    public function delete(Request $request)
+    {
+        $data = $request->request->all();
+
+        if (!isset($data['id']) || is_null($data['id'])){
+            return $this->returnResponse(json_encode(["msg" => "ID não informado"]), 401);
+        }
+
+        $orm = $this->getDoctrineService();
+
+        $beer = $orm->getRepository('Api\Model\Beer')
+            ->find($data['id']);
+
+        $orm->remove($beer);
+        $orm->flush();
+
+        return $this->returnResponse(json_encode(["msg"=>"beer sucessfull deleted at"]),200);
+    }
 }

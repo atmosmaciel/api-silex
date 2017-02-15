@@ -22,4 +22,10 @@ class BaseController
 
         return $response;
     }
+
+    public function getDoctrineService()
+    {
+        $getDoctrineService = $this->app['orm.em'];
+        return $getDoctrineService;
+    }
 }
