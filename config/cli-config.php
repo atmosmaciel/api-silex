@@ -1,10 +1,4 @@
 <?php
-/**
- * Comando para Rodar via terminal
- * ./bin/doctrine orm:convert-mapping --force --from-database annotation ./src/Model/
- *
- */
-
 // cli-config.php
 require_once __DIR__ . '/../bootstrap.php';
 

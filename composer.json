@@ -13,8 +13,8 @@
         "doctrine/common": "2.4.*",
         "doctrine/dbal": "2.4.*",
         "doctrine/orm": "2.4.*",
-        "dflydev/doctrine-orm-service-provider": "2.*", /** provider pronto para se usar o ORM Doctrine **/
-        "jms/serializer": "^1.3" /** vai servir para serializar os nossos objetos para que nosso controller possa ler **/
+        "dflydev/doctrine-orm-service-provider": "2.*",
+        "jms/serializer": "^1.3"
     },
     "config": {
         "bin-dir": "bin/"

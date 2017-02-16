@@ -3,29 +3,30 @@
 namespace Api\Controller;
 
 use Silex\Application;
-use Symfony\Component\HttpFoundation\Response;
 
 class BaseController
 {
     protected $app;
+    protected $createdAt;
+    protected $updatedAt;
 
     public function __construct(Application $app)
     {
         $this->app = $app;
     }
 
-    public function returnResponse($response, $code)
+    public function getHourCreate()
     {
-        $response = new Response($response, $code);
+        return $this->createdAt = new \DateTime("now", new \DateTimeZone("America/Sao_Paulo"));
+    }
 
-        $response->headers->set('Content-Type', 'application/json');
-
-        return $response;
+    public function getHourUpdate()
+    {
+        return $this->updatedAt = new \DateTime("now", new \DateTimeZone("America/Sao_Paulo"));
     }
 
     public function getDoctrineService()
     {
-        $getDoctrineService = $this->app['orm.em'];
-        return $getDoctrineService;
+        return $getDoctrineService = $this->app['orm.em'];
     }
 }

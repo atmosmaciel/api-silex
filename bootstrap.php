@@ -1,5 +1,5 @@
 <?php
-//arquivo que contem configuracoes para o doctrine; faz importacao dos pacotes;
+
 require 'vendor/autoload.php';
 
 use Doctrine\ORM\Tools\Setup;

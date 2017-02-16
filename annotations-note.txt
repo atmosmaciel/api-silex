@@ -1,0 +1,21 @@
+/**
+ * Comando para Rodar via terminal
+ * ./bin/doctrine orm:convert-mapping --force --from-database annotation ./src/Model/
+ */
+
+
+/*
+ * Quando o ORM Doctrine retorna os dados do Banco ele retorna como um Objeto.
+ * Assim fica cimplexo manipular os dados retornados.
+ * Uma forma de resolver este problema é serializanso os dados retonados a transformalos em json.
+ * Assim a manipulacao via json fica mais simples, para a manipulacao da infomacao.
+ */
+$build = SerializerBuilder::create()->build()->serialize($beers, 'json');
+
+bootstrap.php //arquivo que contem configuracoes para o doctrine; faz importacao dos pacotes;
+
+app.php //aquirvo de configuração do Silex e Rotas a nível aplicação.
+
+"dflydev/doctrine-orm-service-provider": "2.*", /** provider pronto para se usar o ORM Doctrine **/
+
+"jms/serializer": "^1.3" /** vai servir para serializar os nossos objetos para que nosso controller possa ler **/

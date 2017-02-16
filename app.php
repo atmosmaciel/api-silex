@@ -1,11 +1,13 @@
 <?php
-//contem configuracoes do silex; e registros que o Silex utiliza;
+
 require "bootstrap.php";
 
 use Silex\Application;
 use Api\Service\RouterServiceProvider;
 use Api\Service\ControllerServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 $app = new Application();
 
@@ -13,13 +15,14 @@ $app['debug'] = true;
 
 $app['api_version'] = '/v1';
 
+$app->after(function (Request $request, Response $response){
+    $response->headers->set('Content-Type', 'application/json');
+});
+
 $app->register(new RouterServiceProvider());
 $app->register(new ControllerServiceProvider());
 $app->register(new ServiceControllerServiceProvider());
 
-/**
- * Registra o Doctrine ORM Service Provider
- */
 $app->register(new \Silex\Provider\DoctrineServiceProvider(), array(
     'dbs.options' => array(
         'default' => $dbParams
