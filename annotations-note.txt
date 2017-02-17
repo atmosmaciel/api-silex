@@ -1,4 +1,8 @@
+* Validacao de dados
 * implementar futuramente o tratamento de exeções
+* Autenticaçao com JWT
+* Criacao de Services
+* TDD
 
 /**
  * Comando para Rodar via terminal

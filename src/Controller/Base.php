@@ -4,7 +4,7 @@ namespace Api\Controller;
 
 use Silex\Application;
 
-class BaseController
+class Base
 {
     protected $app;
     protected $createdAt;

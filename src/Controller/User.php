@@ -2,35 +2,25 @@
 
 namespace Api\Controller;
 
-use Api\Model\Beer;
-use Silex\Application;
+use Illuminate\Hashing\BcryptHasher;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\HttpFoundation\Request;
 
-class BeerController extends BaseController
+class User extends Base
 {
-    private $beer;
-
-    public function __construct(Application $app)
-    {
-        parent::__construct($app);
-
-        $this->beer = new Beer();
-    }
-
     public function get($id = null)
     {
-        $beers = $this->getDoctrineService()
-                      ->getRepository('Api\Model\Beer');
+        $users = $this->getDoctrineService()
+                      ->getRepository('Api\Model\User');
 
         if (is_null($id)){
-            $beers = $beers->findAll();
+            $users = $users->findAll();
         } else {
             $id = (int) $id;
-            $beers = $beers->find($id);
+            $users = $users->find($id);
         }
 
-        $build = SerializerBuilder::create()->build()->serialize($beers, 'json');
+        $build = SerializerBuilder::create()->build()->serialize($users, 'json');
 
         return $build;
     }
@@ -39,15 +29,21 @@ class BeerController extends BaseController
     {
         $data = $request->request->all();
 
-        $this->beer->setName($data['name'])
-                   ->setPrice($data['price'])
-                   ->setType($data['type'])
-                   ->setMark($data['mark'])
-                   ->setCreatedAt($this->getHourCreate())
-                   ->setUpdatedAt($this->getHourUpdate());
+        $user = new \Api\Model\User();
+
+        $password = new BcryptHasher();
+        $password = $password->make($data['password']);
+
+        $user->setName($data['name'])
+             ->setCelphone($data['celphone'])
+             ->setEmail($data['email'])
+             ->setWebsite($data['website'])
+             ->setPassword($password)
+             ->setCreatedAt($this->getHourCreate())
+             ->setUpdatedAt($this->getHourUpdate());
 
         $orm = $this->getDoctrineService();
-        $orm->persist($this->beer);
+        $orm->persist($user);
         $orm->flush();
 
         return json_encode(['msg'=>'beer saved sucessfull']);
@@ -63,17 +59,23 @@ class BeerController extends BaseController
 
         $orm = $this->getDoctrineService();
 
-        $beer = $orm->getRepository('Api\Model\Beer')
+        $user = $orm->getRepository('Api\Model\User')
                     ->find($data['id']);
 
         foreach ($data as $key=>$value){
-            $set = "set".ucfirst($key);
-            $beer->$set($value);
+            $set = "set" . ucfirst($key);
+            if (!$set === "setPassword"){
+                $user->$set($value);
+            }
+
+            $password = new BcryptHasher();
+            $password = $password->make($data['password']);
+            $user->setPassword($password);
         }
 
-        $beer->setUpdatedAt($this->getHourUpdate());
+        $user->setUpdatedAt($this->getHourUpdate());
 
-        $orm->merge($beer);
+        $orm->merge($user);
         $orm->flush();
 
         return json_encode(["msg"=>"beer sucessfull updatad at"]);
@@ -89,10 +91,10 @@ class BeerController extends BaseController
 
         $orm = $this->getDoctrineService();
 
-        $beer = $orm->getRepository('Api\Model\Beer')
-            ->find($data['id']);
+        $user = $orm->getRepository('Api\Model\User')
+                    ->find($data['id']);
 
-        $orm->remove($beer);
+        $orm->remove($user);
         $orm->flush();
 
         return json_encode(["msg"=>"beer sucessfull deleted at"]);

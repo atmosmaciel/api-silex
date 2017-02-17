@@ -3,12 +3,11 @@
 namespace Api\Model;
 
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation AS JMS;
 
 /**
- * Beers
+ * Beer
  *
- * @ORM\Table(name="beers")
+ * @ORM\Table(name="beer")
  * @ORM\Entity
  */
 class Beer
@@ -18,21 +17,22 @@ class Beer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="beer_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=150, nullable=true)
+     * @ORM\Column(name="name", type="string", length=250, nullable=false)
      */
     private $name;
 
     /**
-     * @var float
+     * @var string
      *
-     * @ORM\Column(name="price", type="float", precision=10, scale=2, nullable=true)
+     * @ORM\Column(name="price", type="decimal", precision=15, scale=3, nullable=true)
      */
     private $price;
 
@@ -101,7 +101,7 @@ class Beer
     }
 
     /**
-     * @return float
+     * @return string
      */
     public function getPrice()
     {
@@ -109,7 +109,7 @@ class Beer
     }
 
     /**
-     * @param float $price
+     * @param string $price
      * @return Beer
      */
     public function setPrice($price)
@@ -189,4 +189,5 @@ class Beer
         $this->updatedAt = $updatedAt;
         return $this;
     }
+
 }

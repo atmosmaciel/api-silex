@@ -3,11 +3,12 @@
 require "bootstrap.php";
 
 use Silex\Application;
+
 use Api\Service\RouterServiceProvider;
 use Api\Service\ControllerServiceProvider;
-use Silex\Provider\ServiceControllerServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Silex\Provider\ServiceControllerServiceProvider;
 
 $app = new Application();
 
