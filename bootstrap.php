@@ -13,10 +13,13 @@ $isDevMode = false;
 $paths = array(__DIR__ . '/src/Model');
 
 $dbParams = array(
-    'driver'   => 'pdo_mysql',
-    'user'     => 'root',
-    'password' => '#clare47*#',
-    'dbname'   => 'api_master',
+     'driver'   => 'pdo_pgsql'
+    ,'host'     => 'localhost'
+    ,'port'     => '5432'
+    ,'user'     => 'postgres'
+    ,'password' => '#clare47*#'
+    ,'dbname'   => 'api_silex'
+    ,'charset'  => 'UTF8'
 );
 
 $config = Setup::createConfiguration($isDevMode);

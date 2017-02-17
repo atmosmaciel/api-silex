@@ -1,8 +1,9 @@
+* implementar futuramente o tratamento de exeções
+
 /**
  * Comando para Rodar via terminal
  * ./bin/doctrine orm:convert-mapping --force --from-database annotation ./src/Model/
  */
-
 
 /*
  * Quando o ORM Doctrine retorna os dados do Banco ele retorna como um Objeto.
