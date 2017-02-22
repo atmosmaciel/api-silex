@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="users")
  * @ORM\Entity
  */
 class User
@@ -18,42 +18,42 @@ class User
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
-     * @ORM\SequenceGenerator(sequenceName="user_id_seq", allocationSize=1, initialValue=1)
+     * @ORM\SequenceGenerator(sequenceName="users_id_seq", allocationSize=1, initialValue=1)
      */
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=250, nullable=false)
+     * @ORM\Column(name="name", type="string", length=250, nullable=true)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="celphone", type="string", length=250, nullable=true)
+     * @ORM\Column(name="celphone", type="string", length=15, nullable=true)
      */
     private $celphone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=80, nullable=false)
+     * @ORM\Column(name="email", type="string", length=80, nullable=true)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="website", type="string", length=250, nullable=true)
+     * @ORM\Column(name="website", type="string", length=80, nullable=true)
      */
     private $website;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="password", type="string", length=250, nullable=false)
+     * @ORM\Column(name="password", type="string", length=250, nullable=true)
      */
     private $password;
 

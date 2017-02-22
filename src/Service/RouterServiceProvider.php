@@ -21,7 +21,7 @@ class RouterServiceProvider implements ServiceProviderInterface
 
 		$app->delete($app['api_version'] . $beers_url . '{id}', 'beers:delete');
 
-		$users_url = '/users';
+		$users_url = '/users/';
 
         $app->get($app['api_version'] . $users_url, 'users:get');
 

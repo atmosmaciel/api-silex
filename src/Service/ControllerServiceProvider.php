@@ -3,9 +3,9 @@
 namespace Api\Service;
 
 use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Api\Controller\Beer;
 use Api\Controller\User;
-use Pimple\ServiceProviderInterface;
 
 class ControllerServiceProvider implements ServiceProviderInterface
 {
