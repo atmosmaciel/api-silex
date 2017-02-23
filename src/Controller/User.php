@@ -62,16 +62,16 @@ class User extends Base
         $user = $orm->getRepository('Api\Model\User')
                     ->find($data['id']);
 
-        foreach ($data as $key=>$value){
+        foreach ($data as $key=>$value) {
             $set = "set" . ucfirst($key);
 
-            if ($set === "setPassword") {
+            if ($set == "setPassword") {
                 $password = new BcryptHasher();
                 $password = $password->make($data['password']);
                 $user->setPassword($password);
+            } else {
+                $user->$set($value);
             }
-
-            $user->$set($value);
         }
 
         $user->setUpdatedAt($this->getDateTimeNow());
@@ -82,18 +82,16 @@ class User extends Base
         return json_encode(["msg"=>"beer sucessfull updatad at"]);
     }
 
-    public function delete(Request $request)
+    public function delete($id = null)
     {
-        $data = $request->request->all();
-
-        if (!isset($data['id']) || is_null($data['id'])){
+        if (!isset($id) || is_null($id)){
             return json_encode(["msg" => "ID nao informado"]);
         }
 
         $orm = $this->getDoctrineService();
 
         $user = $orm->getRepository('Api\Model\User')
-                    ->find($data['id']);
+                    ->find($id);
 
         $orm->remove($user);
         $orm->flush();
