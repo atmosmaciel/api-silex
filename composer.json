@@ -2,10 +2,24 @@
     "name": "atmosmaciel/api-with-silex",
     "description": "api-with-silex",
     "minimum-stability": "dev",
+    "authors":[
+       {
+           "name": "Atmos Maciel",
+           "email": "atmosmaciel@heptum.com.br"
+       }
+    ],
     "require": {
-    	"silex/silex": "^2.0"
+    	"silex/silex": "^2.0",
+        "doctrine/common": "2.4.*",
+        "doctrine/dbal": "2.4.*",
+        "doctrine/orm": "2.4.*",
+        "dflydev/doctrine-orm-service-provider": "2.*",
+        "jms/serializer": "^1.3",
+        "illuminate/hashing": "^5.3"
     },
-
+    "config": {
+        "bin-dir": "bin/"
+    },
     "autoload": {
     	"psr-4": {
     		"Api\\":"src/"
