@@ -15,12 +15,7 @@ class Base
         $this->app = $app;
     }
 
-    public function getHourCreate()
-    {
-        return $this->createdAt = new \DateTime("now", new \DateTimeZone("America/Sao_Paulo"));
-    }
-
-    public function getHourUpdate()
+    public function getDateTimeNow()
     {
         return $this->updatedAt = new \DateTime("now", new \DateTimeZone("America/Sao_Paulo"));
     }

@@ -34,8 +34,8 @@ class Beer extends Base
              ->setPrice($data['price'])
              ->setType($data['type'])
              ->setMark($data['mark'])
-             ->setCreatedAt($this->getHourCreate())
-             ->setUpdatedAt($this->getHourUpdate());
+             ->setCreatedAt($this->getDateTimeNow())
+             ->setUpdatedAt($this->getDateTimeNow());
 
         $orm = $this->getDoctrineService();
         $orm->persist($beer);
@@ -62,7 +62,7 @@ class Beer extends Base
             $beer->$set($value);
         }
 
-        $beer->setUpdatedAt($this->getHourUpdate());
+        $beer->setUpdatedAt($this->getDateTimeNow());
 
         $orm->merge($beer);
         $orm->flush();

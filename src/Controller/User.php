@@ -39,8 +39,8 @@ class User extends Base
              ->setEmail($data['email'])
              ->setWebsite($data['website'])
              ->setPassword($password)
-             ->setCreatedAt($this->getHourCreate())
-             ->setUpdatedAt($this->getHourUpdate());
+             ->setCreatedAt($this->getDateTimeNow())
+             ->setUpdatedAt($this->getDateTimeNow());
 
         $orm = $this->getDoctrineService();
         $orm->persist($user);
@@ -64,16 +64,17 @@ class User extends Base
 
         foreach ($data as $key=>$value){
             $set = "set" . ucfirst($key);
-            if (!$set === "setPassword"){
-                $user->$set($value);
+
+            if ($set === "setPassword") {
+                $password = new BcryptHasher();
+                $password = $password->make($data['password']);
+                $user->setPassword($password);
             }
 
-            $password = new BcryptHasher();
-            $password = $password->make($data['password']);
-            $user->setPassword($password);
+            $user->$set($value);
         }
 
-        $user->setUpdatedAt($this->getHourUpdate());
+        $user->setUpdatedAt($this->getDateTimeNow());
 
         $orm->merge($user);
         $orm->flush();
