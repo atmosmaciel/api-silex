@@ -70,18 +70,16 @@ class Beer extends Base
         return json_encode(["msg"=>"beer sucessfull updatad at"]);
     }
 
-    public function delete(Request $request)
+    public function delete($id = null)
     {
-        $data = $request->request->all();
-
-        if (!isset($data['id']) || is_null($data['id'])){
+        if (!isset($id) || is_null($id)){
             return json_encode(["msg" => "ID nao informado"]);
         }
 
         $orm = $this->getDoctrineService();
 
         $beer = $orm->getRepository('Api\Model\Beer')
-            ->find($data['id']);
+            ->find($id);
 
         $orm->remove($beer);
         $orm->flush();
