@@ -1,9 +1,6 @@
 <?php
 
-namespace Api\Service;
-
-use Api\Service\SanitizerValidatorValues\Sanitize;
-use Api\Service\SanitizerValidatorValues\Validate;
+namespace Api\Service\SanitizerValidatorValues;
 
 class ValidateValues
 {
