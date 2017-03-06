@@ -7,7 +7,7 @@ class Validate
     public function string($input = null) {
 
         if (is_string($input) == false) {
-            return null;
+            return $input;
         } else {
             $removingSymbolsNumbers = preg_replace("/[^a-zA-Z\s]/", "", $input); //remove caracteres especiais e numeros;
             $string = $removingSymbolsNumbers;

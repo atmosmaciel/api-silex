@@ -16,36 +16,31 @@ class ValidateValues
         $this->validate = new Validate();
     }
 
-    public function string($input = null) {
-
+    public function string($input = null)
+    {
         $sanitizedString = $this->sanitize->string($input);
-        $validString = $this->validate->string($sanitizedString);
-
-        return $validString;
-
+        if ($sanitizedString == false) return $sanitizedString;
+        return $validString = $this->validate->string($sanitizedString);
     }
 
     public function phone($input = null)
     {
         $sanitizedString = $this->sanitize->string($input);
-        $validPhone = $this->validate->phone($sanitizedString);
-
-        return $validPhone;
+        if ($sanitizedString == false) return $sanitizedString;
+        return $validPhone = $this->validate->phone($sanitizedString);
     }
 
     public function email($input = null)
     {
         $sanitizedEmail = $this->sanitize->email($input);
-        $validEmail = $this->validate->email($sanitizedEmail);
-
-        return $validEmail;
+        if ($sanitizedEmail == false) return $sanitizedEmail;
+        return $validEmail = $this->validate->email($sanitizedEmail);
     }
 
     public function url($input = null)
     {
         $sanitizedUrl = $this->sanitize->url($input);
-        $validUrl = $this->validate->url($sanitizedUrl);
-
-        return $validUrl;
+        if ($sanitizedUrl == false) return $sanitizedUrl;
+        return $validUrl = $this->validate->url($sanitizedUrl);
     }
 }
