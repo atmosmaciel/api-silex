@@ -5,7 +5,7 @@ namespace Api\Service\SanitizerValidatorValues;
 class Sanitize
 {
     public function stringSpecialCaracteres($input = null) {
-        $stringSpecial = filter_var($input, FILTER_SANITIZE_FULL_SPECIAL_CHARS); return $stringSpecial;
+        return $stringSpecial = filter_var($input, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
     }
 
     public function string($input = null)
@@ -21,5 +21,4 @@ class Sanitize
     public function url($input = null) {
         return $url = filter_var($input, FILTER_SANITIZE_URL);
     }
-
 }

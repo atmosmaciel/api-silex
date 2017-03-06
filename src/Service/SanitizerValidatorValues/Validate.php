@@ -4,15 +4,11 @@ namespace Api\Service\SanitizerValidatorValues;
 
 class Validate
 {
-    public function string($input = null) {
-
-        if (is_string($input) == false) {
-            return $input;
-        } else {
-            $removingSymbolsNumbers = preg_replace("/[^a-zA-Z\s]/", "", $input); //remove caracteres especiais e numeros;
-            $string = $removingSymbolsNumbers;
-        }
-        return $string;
+    public function string($input = null)
+    {
+        if (is_string($input) == false) return $input;
+        $removingSymbolsNumbers = preg_replace("/[^a-zA-Z\s]/", "", $input); //remove caracteres especiais e numeros;
+        return $string = $removingSymbolsNumbers;
     }
 
     public function phone($input = null) {
