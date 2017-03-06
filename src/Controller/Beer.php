@@ -12,7 +12,7 @@ class Beer extends Base
         $beers = $this->getDoctrineService()
                       ->getRepository('Api\Model\Beer');
 
-        if (is_null($id)){
+        if (is_null($id)) {
             $beers = $beers->findAll();
         } else {
             $id = (int) $id;
@@ -28,14 +28,14 @@ class Beer extends Base
     {
         $data = $request->request->all();
 
-        $beer = new \Api\Model\Beer();
+        $beer = new \Api\Model\Beer();                
 
         $beer->setName($data['name'])
              ->setPrice($data['price'])
              ->setType($data['type'])
              ->setMark($data['mark'])
-             ->setCreatedAt($this->getHourCreate())
-             ->setUpdatedAt($this->getHourUpdate());
+             ->setCreatedAt($this->getDateTimeNow())
+             ->setUpdatedAt($this->getDateTimeNow());
 
         $orm = $this->getDoctrineService();
         $orm->persist($beer);
@@ -48,7 +48,7 @@ class Beer extends Base
     {
         $data = $request->request->all();
 
-        if (!isset($data['id']) || is_null($data['id'])){
+        if (!isset($data['id']) || is_null($data['id'])) {
             return json_encode(["msg" => "ID nao informado"]);
         }
 
@@ -57,12 +57,12 @@ class Beer extends Base
         $beer = $orm->getRepository('Api\Model\Beer')
                     ->find($data['id']);
 
-        foreach ($data as $key=>$value){
+        foreach ($data as $key => $value) {
             $set = "set" . ucfirst($key);
             $beer->$set($value);
         }
 
-        $beer->setUpdatedAt($this->getHourUpdate());
+        $beer->setUpdatedAt($this->getDateTimeNow());
 
         $orm->merge($beer);
         $orm->flush();
@@ -70,18 +70,16 @@ class Beer extends Base
         return json_encode(["msg"=>"beer sucessfull updatad at"]);
     }
 
-    public function delete(Request $request)
+    public function delete($id = null)
     {
-        $data = $request->request->all();
-
-        if (!isset($data['id']) || is_null($data['id'])){
+        if (!isset($id) || is_null($id)) {
             return json_encode(["msg" => "ID nao informado"]);
         }
 
         $orm = $this->getDoctrineService();
 
         $beer = $orm->getRepository('Api\Model\Beer')
-            ->find($data['id']);
+            ->find($id);
 
         $orm->remove($beer);
         $orm->flush();

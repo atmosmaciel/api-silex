@@ -5,6 +5,7 @@ namespace Api\Controller;
 use Illuminate\Hashing\BcryptHasher;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\HttpFoundation\Request;
+use Api\Service\ValidateValues;
 
 class User extends Base
 {
@@ -31,16 +32,23 @@ class User extends Base
 
         $user = new \Api\Model\User();
 
+        $validation = new ValidateValues();
+
+        $name = $validation->validateName($data['name']);
+        $celPhone = $validation->validateCelphone($data['celphone']);
+        $email = $validation->validateEmail($data['email']);
+        $website = $validation->validateWebsite($data['website']);
+
         $password = new BcryptHasher();
         $password = $password->make($data['password']);
 
-        $user->setName($data['name'])
-             ->setCelphone($data['celphone'])
-             ->setEmail($data['email'])
-             ->setWebsite($data['website'])
+        $user->setName($name)
+             ->setCelphone($celPhone)
+             ->setEmail($email)
+             ->setWebsite($website)
              ->setPassword($password)
-             ->setCreatedAt($this->getHourCreate())
-             ->setUpdatedAt($this->getHourUpdate());
+             ->setCreatedAt($this->getDateTimeNow())
+             ->setUpdatedAt($this->getDateTimeNow());
 
         $orm = $this->getDoctrineService();
         $orm->persist($user);
@@ -62,18 +70,19 @@ class User extends Base
         $user = $orm->getRepository('Api\Model\User')
                     ->find($data['id']);
 
-        foreach ($data as $key=>$value){
+        foreach ($data as $key=>$value) {
             $set = "set" . ucfirst($key);
-            if (!$set === "setPassword"){
+
+            if ($set == "setPassword") {
+                $password = new BcryptHasher();
+                $password = $password->make($data['password']);
+                $user->setPassword($password);
+            } else {
                 $user->$set($value);
             }
-
-            $password = new BcryptHasher();
-            $password = $password->make($data['password']);
-            $user->setPassword($password);
         }
 
-        $user->setUpdatedAt($this->getHourUpdate());
+        $user->setUpdatedAt($this->getDateTimeNow());
 
         $orm->merge($user);
         $orm->flush();
@@ -81,18 +90,16 @@ class User extends Base
         return json_encode(["msg"=>"beer sucessfull updatad at"]);
     }
 
-    public function delete(Request $request)
+    public function delete($id = null)
     {
-        $data = $request->request->all();
-
-        if (!isset($data['id']) || is_null($data['id'])){
+        if (!isset($id) || is_null($id)){
             return json_encode(["msg" => "ID nao informado"]);
         }
 
         $orm = $this->getDoctrineService();
 
         $user = $orm->getRepository('Api\Model\User')
-                    ->find($data['id']);
+                    ->find($id);
 
         $orm->remove($user);
         $orm->flush();
