@@ -744,12 +744,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "adde76d2f316c313a2d01d07656f8ee8feed3373"
+                "reference": "20c703419244557c10d9b035b205078fcb99f739"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/adde76d2f316c313a2d01d07656f8ee8feed3373",
-                "reference": "adde76d2f316c313a2d01d07656f8ee8feed3373",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/20c703419244557c10d9b035b205078fcb99f739",
+                "reference": "20c703419244557c10d9b035b205078fcb99f739",
                 "shasum": ""
             },
             "require": {
@@ -793,7 +793,7 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "https://laravel.com",
-            "time": "2017-02-24 02:27:38"
+            "time": "2017-03-05 16:32:05"
         },
         {
             "name": "jms/metadata",
@@ -959,16 +959,16 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "v2.0.7",
+            "version": "v2.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "b5ea1ef3d8ff10c307ba8c5945c2f134e503278f"
+                "reference": "6968531206671f94377b01dc7888d5d1b858a01b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/b5ea1ef3d8ff10c307ba8c5945c2f134e503278f",
-                "reference": "b5ea1ef3d8ff10c307ba8c5945c2f134e503278f",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/6968531206671f94377b01dc7888d5d1b858a01b",
+                "reference": "6968531206671f94377b01dc7888d5d1b858a01b",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1003,7 @@
                 "pseudorandom",
                 "random"
             ],
-            "time": "2017-02-27 17:11:23"
+            "time": "2017-03-03 20:43:42"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -1202,12 +1202,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/silexphp/Silex.git",
-                "reference": "002a6a6e08098ad52fb5785b0f3f3907a5e47ca8"
+                "reference": "de9c57a95b7eb0eff47da0dd9c7dcc7d4be82189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/silexphp/Silex/zipball/002a6a6e08098ad52fb5785b0f3f3907a5e47ca8",
-                "reference": "002a6a6e08098ad52fb5785b0f3f3907a5e47ca8",
+                "url": "https://api.github.com/repos/silexphp/Silex/zipball/de9c57a95b7eb0eff47da0dd9c7dcc7d4be82189",
+                "reference": "de9c57a95b7eb0eff47da0dd9c7dcc7d4be82189",
                 "shasum": ""
             },
             "require": {
@@ -1279,7 +1279,7 @@
             "keywords": [
                 "microframework"
             ],
-            "time": "2017-02-19 17:15:12"
+            "time": "2017-03-05 16:47:21"
         },
         {
             "name": "symfony/console",
@@ -1287,12 +1287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "42645e1a6d36fd4177751bea0e607d039c9a1b7d"
+                "reference": "81508e6fac4476771275a3f4f53c3fee9b956bfa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/42645e1a6d36fd4177751bea0e607d039c9a1b7d",
-                "reference": "42645e1a6d36fd4177751bea0e607d039c9a1b7d",
+                "url": "https://api.github.com/repos/symfony/console/zipball/81508e6fac4476771275a3f4f53c3fee9b956bfa",
+                "reference": "81508e6fac4476771275a3f4f53c3fee9b956bfa",
                 "shasum": ""
             },
             "require": {
@@ -1340,7 +1340,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21 14:21:52"
+            "time": "2017-03-04 11:00:12"
         },
         {
             "name": "symfony/debug",
@@ -1468,12 +1468,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "9723780247b0c207f4937e8f31163a0c2d7231f5"
+                "reference": "3706991cb3e0ad6ba3a51ec4fa610c42369acff1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/9723780247b0c207f4937e8f31163a0c2d7231f5",
-                "reference": "9723780247b0c207f4937e8f31163a0c2d7231f5",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/3706991cb3e0ad6ba3a51ec4fa610c42369acff1",
+                "reference": "3706991cb3e0ad6ba3a51ec4fa610c42369acff1",
                 "shasum": ""
             },
             "require": {
@@ -1513,7 +1513,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-21 10:07:34"
+            "time": "2017-03-05 21:52:44"
         },
         {
             "name": "symfony/http-kernel",
@@ -1521,12 +1521,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "81560894d684c5020fcd6c974be34eab3dfa58f9"
+                "reference": "030e497e29ce549cfe1ca44f423870f918b93a6e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/81560894d684c5020fcd6c974be34eab3dfa58f9",
-                "reference": "81560894d684c5020fcd6c974be34eab3dfa58f9",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/030e497e29ce549cfe1ca44f423870f918b93a6e",
+                "reference": "030e497e29ce549cfe1ca44f423870f918b93a6e",
                 "shasum": ""
             },
             "require": {
@@ -1598,7 +1598,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2017-02-28 14:44:39"
+            "time": "2017-03-03 12:55:06"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1665,12 +1665,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "219a5d15ef695c7fd3fc13873fd07e1253334ce8"
+                "reference": "c372f9db1850e32ab520fb282e62cba37ed5398c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/219a5d15ef695c7fd3fc13873fd07e1253334ce8",
-                "reference": "219a5d15ef695c7fd3fc13873fd07e1253334ce8",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/c372f9db1850e32ab520fb282e62cba37ed5398c",
+                "reference": "c372f9db1850e32ab520fb282e62cba37ed5398c",
                 "shasum": ""
             },
             "require": {
@@ -1684,6 +1684,7 @@
                 "doctrine/common": "~2.2",
                 "psr/log": "~1.0",
                 "symfony/config": "~2.8|~3.0",
+                "symfony/dependency-injection": "~2.8|~3.0",
                 "symfony/expression-language": "~2.8|~3.0",
                 "symfony/http-foundation": "~2.8|~3.0",
                 "symfony/yaml": "~2.8|~3.0"
@@ -1732,7 +1733,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-28 20:11:03"
+            "time": "2017-03-05 15:12:05"
         }
     ],
     "packages-dev": [],

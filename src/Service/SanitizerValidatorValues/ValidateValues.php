@@ -1,105 +1,51 @@
 <?php
-/**
- * Esta classe é responsável por sanitizar valores de campos de uso geral.
- */
+
 namespace Api\Service;
+
+use Api\Service\SanitizerValidatorValues\Sanitize;
+use Api\Service\SanitizerValidatorValues\Validate;
 
 class ValidateValues
 {
-    private $sanitize = array (
-         "email" => FILTER_SANITIZE_EMAIL
-        ,"encoded" => FILTER_SANITIZE_ENCODED
-        ,"magic_quotes" => FILTER_SANITIZE_MAGIC_QUOTES
-        ,"number_float" => FILTER_SANITIZE_NUMBER_FLOAT
-        ,"number_int" => FILTER_SANITIZE_NUMBER_INT
-        ,"special_chars" => FILTER_SANITIZE_SPECIAL_CHARS
-        ,"full_special_chars" => FILTER_SANITIZE_FULL_SPECIAL_CHARS
-        ,"string" => FILTER_SANITIZE_STRING
-        ,"stripped" => FILTER_SANITIZE_STRIPPED
-        ,"url" => FILTER_SANITIZE_URL
-        ,"unsafe_raw" => FILTER_UNSAFE_RAW
-    );
+    private $sanitize;
+    private $validate;
 
-    private function validate_celphone($input)
+    public function __construct()
     {
-        return !empty($input) && preg_match('/^[+]?([\d]{0,3})?[\(\.\-\s]?(([\d]{1,3})[\)\.\-\s]*)?(([\d]{3,5})[\.\-\s]?([\d]{4})|([\d]{2}[\.\-\s]?){4})$/', $input);
+        $this->sanitize = new Sanitize();
+        $this->validate = new Validate();
     }
 
-    public function validateString($slug = null) {
-        /*
-         * $sanitizedString = $this->sanitize->sanitizeString($slug);
-         * $validString = $this->validate->validateString($sanitizedString);
-         */
+    public function string($input = null) {
+
+        $sanitizedString = $this->sanitize->string($input);
+        $validString = $this->validate->string($sanitizedString);
+
+        return $validString;
+
     }
 
-    public function validateName($name = null)
+    public function phone($input = null)
     {
-        if (is_null($name) || $name === ''){
-            return null;
-        } else {
-            $rv = is_string($name);
+        $sanitizedString = $this->sanitize->string($input);
+        $validPhone = $this->validate->phone($sanitizedString);
 
-            if (!$rv == true) {
-                $valideName = null;
-            } else {
-                $removingSymbolsNumbers = preg_replace("/[^a-zA-Z\s]/", "", $name);
-                $sanitizeValue = filter_var($removingSymbolsNumbers, $this->sanitize['string'], $this->sanitize['full_special_chars']);
-                $valideName = $sanitizeValue;
-            }
-        }
-
-        return $valideName;
+        return $validPhone;
     }
 
-    public function validateCelphone($celphone = null)
+    public function email($input = null)
     {
-        if (is_null($celphone)|| $celphone === '') {
-            return null;
-        } else {
+        $sanitizedEmail = $this->sanitize->email($input);
+        $validEmail = $this->validate->email($sanitizedEmail);
 
-            $sanitizeValue = filter_var($celphone, $this->sanitize['string'], $this->sanitize['full_special_chars']);
-            $rv = $this->validate_celphone($sanitizeValue);
-
-            if (!$rv == true) {
-                $valideCelphone = null;
-            } else {
-                $valideCelphone = $rv;
-            }
-        }
-
-        return $valideCelphone;
+        return $validEmail;
     }
 
-    public function validateEmail($email = null)
+    public function url($input = null)
     {
-        if (is_null($email) || $email === '') {
-            return null;
-        } else {
+        $sanitizedUrl = $this->sanitize->url($input);
+        $validUrl = $this->validate->url($sanitizedUrl);
 
-            $sanitizeValue = filter_var($email, $this->sanitize['email']);
-            $valideEmail = filter_var($sanitizeValue, FILTER_VALIDATE_EMAIL);
-
-            if ($valideEmail == false) {
-                $valideEmail = null;
-            }
-        }
-
-        return $valideEmail;
-    }
-
-    public function validateWebsite($website)
-    {
-        if (is_null($website) || $website === '') {
-            return null;
-        } else {
-            $sanitizeValue = filter_var($website, $this->sanitize['url']);
-            $valideWebsite = filter_var($sanitizeValue, FILTER_VALIDATE_URL);
-
-            if ($valideWebsite == false) {
-                $valideWebsite = null;
-            }
-        }
-
-        return $valideWebsite;
+        return $validUrl;
     }
 }
