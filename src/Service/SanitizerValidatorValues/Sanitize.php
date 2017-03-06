@@ -4,22 +4,22 @@ namespace Api\Service\SanitizerValidatorValues;
 
 class Sanitize
 {
-    public function stringSpecialCaracteres($slug = null) {
-        $stringSpecial = filter_var($slug, FILTER_SANITIZE_FULL_SPECIAL_CHARS); return $stringSpecial;
+    public function stringSpecialCaracteres($input = null) {
+        $stringSpecial = filter_var($input, FILTER_SANITIZE_FULL_SPECIAL_CHARS); return $stringSpecial;
     }
 
-    public function string($slug = null)
+    public function string($input = null)
     {
-        $string = filter_var($slug, FILTER_SANITIZE_STRING);
+        $string = filter_var($input, FILTER_SANITIZE_STRING);
         return $sanitizeString = filter_var($this->stringSpecialCaracteres($string));
     }
 
-    public function email($slug = null) {
-        return $email = filter_var($slug, FILTER_SANITIZE_EMAIL);
+    public function email($input = null) {
+        return $email = filter_var($input, FILTER_SANITIZE_EMAIL);
     }
 
-    public function url($slug = null) {
-        return $url = filter_var($slug, FILTER_SANITIZE_URL);
+    public function url($input = null) {
+        return $url = filter_var($input, FILTER_SANITIZE_URL);
     }
 
 }
