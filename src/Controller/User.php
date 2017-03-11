@@ -5,7 +5,7 @@ namespace Api\Controller;
 use Illuminate\Hashing\BcryptHasher;
 use JMS\Serializer\SerializerBuilder;
 use Symfony\Component\HttpFoundation\Request;
-use Api\Service\ValidateValues;
+use Api\Service\SanitizerValidatorValues\ValidateValues;
 
 class User extends Base
 {
@@ -34,16 +34,16 @@ class User extends Base
 
         $validation = new ValidateValues();
 
-        $name = $validation->validateName($data['name']);
-        $celPhone = $validation->validateCelphone($data['celphone']);
-        $email = $validation->validateEmail($data['email']);
-        $website = $validation->validateWebsite($data['website']);
+        $name = $validation->string($data['name']);
+        $phone = $validation->phone($data['celphone']);
+        $email = $validation->email($data['email']);
+        $website = $validation->url($data['website']);
 
         $password = new BcryptHasher();
         $password = $password->make($data['password']);
 
         $user->setName($name)
-             ->setCelphone($celPhone)
+             ->setCelphone($phone)
              ->setEmail($email)
              ->setWebsite($website)
              ->setPassword($password)

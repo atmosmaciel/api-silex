@@ -13,6 +13,17 @@ class ValidateValues
         $this->validate = new Validate();
     }
 
+    public function is_true($input)
+    {
+        if ($input == false) {
+            return $input;
+        } else {
+            $error = "erou;";
+        }
+
+        return $error;
+    }
+
     public function string($input = null)
     {
         $sanitizedString = $this->sanitize->string($input);
@@ -22,9 +33,18 @@ class ValidateValues
 
     public function phone($input = null)
     {
-        $sanitizedString = $this->sanitize->string($input);
-        if ($sanitizedString == false) return $sanitizedString;
-        return $validPhone = $this->validate->phone($sanitizedString);
+        if (is_string($input) == false) {
+            return $input;
+        } else {
+            $validPhone = $this->validate->phone($input);
+        }
+
+        if (!$validPhone == true) { //ou seja, se não for igual a 1; 0=false; FALSE = se ocorrer erro;
+            $validPhone = "deu merda";
+        } else {
+            $validPhone = $input;
+        }
+        return $validPhone;
     }
 
     public function email($input = null)
