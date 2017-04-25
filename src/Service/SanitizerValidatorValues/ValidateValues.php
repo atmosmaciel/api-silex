@@ -27,7 +27,9 @@ class ValidateValues
     public function string($input = null)
     {
         $sanitizedString = $this->sanitize->string($input);
-        if ($sanitizedString == false) return $sanitizedString;
+        if ($sanitizedString == false) {
+            return $sanitizedString;
+        }
         return $validString = $this->validate->string($sanitizedString);
     }
 
@@ -50,14 +52,18 @@ class ValidateValues
     public function email($input = null)
     {
         $sanitizedEmail = $this->sanitize->email($input);
-        if ($sanitizedEmail == false) return $sanitizedEmail;
+        if ($sanitizedEmail == false) {
+            return $sanitizedEmail;
+        }
         return $validEmail = $this->validate->email($sanitizedEmail);
     }
 
     public function url($input = null)
     {
         $sanitizedUrl = $this->sanitize->url($input);
-        if ($sanitizedUrl == false) return $sanitizedUrl;
+        if ($sanitizedUrl == false) {
+            return $sanitizedUrl;
+        }
         return $validUrl = $this->validate->url($sanitizedUrl);
     }
 }
