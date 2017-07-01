@@ -28,7 +28,7 @@ class Beer extends Base
     {
         $data = $request->request->all();
 
-        $beer = new \Api\Model\Beer();                
+        $beer = new \Api\Model\Beer();
 
         $beer->setName($data['name'])
              ->setPrice($data['price'])
